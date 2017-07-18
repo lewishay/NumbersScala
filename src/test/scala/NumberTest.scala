@@ -1,5 +1,3 @@
-import org.scalatest.FlatSpec
-
 /**
   * Created by Administratgit remote set-url origin git://new.url.hereor on 18/07/2017.
   */

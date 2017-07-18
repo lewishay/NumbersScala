@@ -2,14 +2,6 @@
   * Created by Administrator on 18/07/2017.
   */
 object Main extends App {
-  try {
-    val arg = BigInt(scala.io.StdIn.readLine("Please enter a number greater than one million."))
-    print(getLongAndShort(arg))
-  }
-  catch {
-    case e: NumberFormatException => print("Something went wrong. Please enter a reasonable number!")
-  }
-
   val million = Math.pow(10, 6).toLong
   val billion = Math.pow(10, 9).toLong
   val trillion = Math.pow(10, 12).toLong
@@ -29,6 +21,7 @@ object Main extends App {
     case _ => "The number is too low! Please keep it above one million!"
   }
 
+  @SuppressWarnings(Array("org.wartremover.warts.NonUnitStatements"))
   def getResult(theNumber: BigInt, loopVal: Int): String = {
     val shortScale = Array("and", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion", "sextillion")
     val longScale = Array("and", "thousand", "million", "milliard", "billion", "billiard", "trillion", "trilliard")
@@ -70,6 +63,14 @@ object Main extends App {
         shortResult.append(shortScale(loopVal-i) + " "); longResult.append(longScale(loopVal-i) + " ")
       }
     }
-    shortResult + "\n" + longResult
+    shortResult.toString + "\n" + longResult.toString
+  }
+
+  try {
+    val arg = BigInt(scala.io.StdIn.readLine("Please enter a number greater than one million."))
+    print(getLongAndShort(arg))
+  }
+  catch {
+    case e: NumberFormatException => print("Something went wrong. Please enter a reasonable number!")
   }
 }
