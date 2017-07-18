@@ -1,7 +1,7 @@
 import org.scalatest.FlatSpec
 
 /**
-  * Created by Administrator on 18/07/2017.
+  * Created by Administratgit remote set-url origin git://new.url.hereor on 18/07/2017.
   */
 class NumberTest extends NumSpec {
   "The getResult function" should "not be called when a number less than 10^6 is inputted" in {
