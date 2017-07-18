@@ -25,7 +25,7 @@ object Main extends App {
     case _ if(number >= quadrillion && number < quintillion) => getResult(number, 5)
     case _ if(number >= quintillion && number < sextillion) => getResult(number, 6)
     case _ if(number >= sextillion && number < tooHigh) => getResult(number, 7)
-    case _ if(number > tooHigh) => "The number is too big! Please keep it below 10^24!"
+    case _ if(number >= tooHigh) => "The number is too big! Please keep it below 10^24!"
     case _ => "The number is too low! Please keep it above one million!"
   }
 
