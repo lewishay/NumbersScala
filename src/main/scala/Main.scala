@@ -1,6 +1,9 @@
+import scala.util.{Failure, Success, Try}
+
 /**
   * Created by Administrator on 18/07/2017.
   */
+@SuppressWarnings(Array("org.wartremover.warts.NonUnitStatements"))
 object Main extends App {
   val million = BigInt("1000000")
   val billion = BigInt("1000000000")
@@ -25,7 +28,6 @@ object Main extends App {
     case _ if(number >= sextillion && number < tooHigh) => 7
   }
 
-  @SuppressWarnings(Array("org.wartremover.warts.NonUnitStatements"))
   def getResult(theNumber: BigInt, loopVal: Int): String = {
     val shortScale = Array("and", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion", "sextillion")
     val longScale = Array("and", "thousand", "million", "milliard", "billion", "billiard", "trillion", "trilliard")
@@ -70,11 +72,18 @@ object Main extends App {
     shortResult.toString + "\n" + longResult.toString
   }
 
-  try {
+
+  Try {
     val arg = BigInt(scala.io.StdIn.readLine("Please enter a number greater than one million."))
     print(getLongAndShort(arg))
+  } match {
+    case Success(_) => //function will be executing if no exception is thrown
+    case Failure(ex) => ex match {
+      case ex: java.lang.NumberFormatException => print("Failure. Please make sure the input is numeric and an integer.")
+    }
   }
-  catch {
-    case e: NumberFormatException => print("Something went wrong. Please enter a reasonable number!")
-  }
+
+//
+//  val arg = BigInt(scala.io.StdIn.readLine("Please enter a number greater than one million."))
+//  print(getLongAndShort(arg))
 }
