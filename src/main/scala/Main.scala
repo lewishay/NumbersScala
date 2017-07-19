@@ -82,8 +82,4 @@ object Main extends App {
       case ex: java.lang.NumberFormatException => print("Failure. Please make sure the input is numeric and an integer.")
     }
   }
-
-//
-//  val arg = BigInt(scala.io.StdIn.readLine("Please enter a number greater than one million."))
-//  print(getLongAndShort(arg))
 }
