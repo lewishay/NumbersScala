@@ -2,23 +2,27 @@
   * Created by Administrator on 18/07/2017.
   */
 object Main extends App {
-  val million = Math.pow(10, 6).toLong
-  val billion = Math.pow(10, 9).toLong
-  val trillion = Math.pow(10, 12).toLong
-  val quadrillion = Math.pow(10, 15).toLong
-  val quintillion = Math.pow(10, 18).toLong
+  val million = BigInt("1000000")
+  val billion = BigInt("1000000000")
+  val trillion = BigInt("1000000000000")
+  val quadrillion = BigInt("1000000000000000")
+  val quintillion = BigInt("1000000000000000000")
   val sextillion = BigInt("1000000000000000000000")
   val tooHigh = BigInt("1000000000000000000000000")
 
   def getLongAndShort(number: BigInt): String = number match {
-    case _ if(number >= million && number < billion) => getResult(number, 2)
-    case _ if(number >= billion && number < trillion) => getResult(number, 3)
-    case _ if(number >= trillion && number < quadrillion) => getResult(number, 4)
-    case _ if(number >= quadrillion && number < quintillion) => getResult(number, 5)
-    case _ if(number >= quintillion && number < sextillion) => getResult(number, 6)
-    case _ if(number >= sextillion && number < tooHigh) => getResult(number, 7)
     case _ if(number >= tooHigh) => "The number is too big! Please keep it below 10^24!"
-    case _ => "The number is too low! Please keep it above one million!"
+    case _ if(number < million) => "The number is too low! Please keep it above one million!"
+    case _ => getResult(number, getCategory(number))
+  }
+
+  def getCategory(number: BigInt): Int = number match {
+    case _ if(number >= million && number < billion) => 2
+    case _ if(number >= billion && number < trillion) => 3
+    case _ if(number >= trillion && number < quadrillion) => 4
+    case _ if(number >= quadrillion && number < quintillion) => 5
+    case _ if(number >= quintillion && number < sextillion) => 6
+    case _ if(number >= sextillion && number < tooHigh) => 7
   }
 
   @SuppressWarnings(Array("org.wartremover.warts.NonUnitStatements"))
